@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в систему</title>
+    <style>
+        /* Полный хаос */
+        body {
+            font-family: 'Comic Sans MS', cursive, fantasy; /* Чтобы вырвало от шрифта */
+            background-color: #ff00ff; /* Вырвиглазный розовый */
+            color: #00ff00; /* Кислотный зеленый */
+            text-align: center; /* Все по центру, пусть страдает */
+            background-image: url('https://i.imgur.com/MHmN6p0.gif'); /* GIF-анимация на фоне */
+            background-size: cover; /* Чтобы еще хуже было видно */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* Скроем что не помещается */
+        }
+
+        .login-form {
+            background-color: #00ffff; /* Бирюзовый */
+            border: 10px dotted #ffff00; /* Желтая пунктирная граница */
+            padding: 50px;
+            width: 600px;
+            max-width: 90%;
+            box-shadow: 20px 20px 30px #000000; /* Огромная тень */
+            animation: shake 5s infinite; /* Трясем форму */
+        }
+
+        @keyframes shake {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(-5deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        h2 {
+            font-size: 5em; /* Огромный заголовок */
+            color: #ff69b4; /* Розовый */
+            text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000; /* Тень на каждом пикселе */
+            margin-bottom: 50px;
+            text-transform: uppercase; /* ВСЕ БОЛЬШИМИ БУКВАМИ */
+            animation: rainbow 3s linear infinite; /* Радужный текст */
+        }
+
+        @keyframes rainbow {
+            0% { color: #ff0000; } /* Красный */
+            14% { color: #ffa500; } /* Оранжевый */
+            28% { color: #ffff00; } /* Желтый */
+            42% { color: #00ff00; } /* Зеленый */
+            57% { color: #007fff; } /* Голубой */
+            71% { color: #0000ff; } /* Синий */
+            85% { color: #8b00ff; } /* Фиолетовый */
+            100% { color: #ff0000; } /* Снова красный */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 2.5em; /* Огромный лейбл */
+            color: #800080; /* Фиолетовый */
+            text-shadow: 1px 1px 0 #ffffff; /* Белая тень */
+            font-style: italic; /* Курсив */
+            text-align: left; /* Вразнобой выровнять */
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 5px double #8b0000; /* Темно-красная граница */
+            border-radius: 50px; /* Все круглое! */
+            font-size: 2em; /* Огромный текст в поле */
+            color: #000080; /* Темно-синий текст */
+            background-color: #faebd7; /* Античный белый */
+        }
+
+        button {
+            background-color: #000000; /* Черный */
+            color: #ffffff; /* Белый текст */
+            padding: 30px 50px;
+            border: 8px ridge #ffffff; /* Белая рифленая граница */
+            border-radius: 0; /* Никаких скруглений */
+            cursor: pointer; /* Рука */
+            font-size: 3em; /* Огромная кнопка */
+            text-transform: lowercase; /* Все с маленькой буквы */
+            letter-spacing: 5px; /* Растянуть буквы */
+            animation: pulse 2s infinite; /* Пульсирующая анимация */
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        button:hover {
+            background-color: #ffff00; /* Желтый при наведении */
+            color: #ff0000; /* Красный текст при наведении */
+            transform: rotate(360deg) scale(1.5); /* Вертится и увеличивается */
+            transition: all 0.5s ease-in-out; /* Плавный переход */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-form">
+        <h2>Вход в систему</h2>
+        <form>
+            <label for="username">Имя пользователя</label>
+            <input type="text" id="username" name="username">
+
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password">
+
+            <button>Войти</button>
+        </form>
+    </div>
+
+</body>
+</html>

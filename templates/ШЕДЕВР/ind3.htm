@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель</title>
+    <style>
+         body {
+            font-family: 'Comic Sans MS', cursive, sans-serif; /* Хуже не придумать */
+            background-color: #ff00ff; /* Ядовито-розовый */
+            color: #00ff00; /* Зеленый, чтобы глаза вытекали */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            background-image: url('https://i.imgur.com/MHmN6p0.gif'); /* GIF-анимация для эпилепсии */
+            background-size: cover; /* Растянуть */
+        }
+
+        nav {
+            background-color: #ffcc00; /* Желтый, чтобы совсем вырвало */
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around; /* Раскидать все в разные стороны */
+            text-transform: uppercase; /* Капс для убедительности */
+            border-bottom: 5px dashed #000000; /* Черные пунктиры */
+            font-size: 1.2em;
+            text-shadow: 2px 2px 4px #ff0000; /* Красная тень для читаемости */
+        }
+
+        nav a {
+            color: #0000ff; /* Синий текст */
+            text-decoration: line-through; /* Зачеркнуто */
+            padding: 5px 10px;
+            border: 2px dotted #ffffff; /* Белые точки */
+            border-radius: 10px;
+            background-color: #00ffff; /* Циан */
+        }
+
+        nav a:hover {
+            background-color: #f0f; /* А, нет, лучше вот так */
+            color: #000; /* И так */
+            transform: rotate(360deg); /* Заставить вертеться при наведении */
+        }
+
+        .card {
+            background-color: #ccccff; /* Блевотно-голубой */
+            color: #800080; /* Фиолетовый, чтоб сливалось */
+            border: 5px groove #808000; /* Болотная граница */
+            border-radius: 0; /* Острые углы! */
+            padding: 20px;
+            margin-top: 20px;
+            width: 60%;
+            box-shadow: none; /* Никаких теней! */
+            text-align: left;
+        }
+
+        .card h2 {
+            font-size: 3em; /* Большой заголовок */
+            margin-bottom: 0;
+            color: #ff69b4; /* Розовый */
+            text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000; /* Тень на каждом пикселе */
+        }
+
+        .card p {
+            font-size: 2em;
+            color: #a52a2a; /* Коричневый, чтоб все испортить */
+            font-style: italic; /* Курсив, чтоб не читалось */
+            text-decoration: underline dotted #000; /* Еще и подчеркнуть! */
+        }
+
+        .card button {
+            background-color: #f44336; /* Красный, вызывающий тревогу */
+            color: #ffffff; /* Но хоть текст белый */
+            border: 3px solid #000; /* Черная рамка */
+            padding: 10px 20px;
+            border-radius: 0; /* Без округлений! */
+            cursor: crosshair; /* Курсор-прицел */
+            text-transform: lowercase; /* И строчные буквы */
+            letter-spacing: 5px; /* Растянуть буквы */
+        }
+
+        .card button:hover {
+            background-color: #000000; /* Теперь черная */
+            color: #ff0000; /* А текст - красный */
+            transform: scale(2); /* Взорвать кнопку при наведении */
+        }
+
+        .leaderboard {
+            background-color: #000000; /* Черная дыра */
+            color: #ff0000; /* Красный текст */
+            border: 4px double #ffff00; /* Двойная желтая */
+            border-radius: 100%; /* Круг */
+            margin-top: 20px;
+            padding: 10px;
+            width: 50%;
+            box-shadow: 10px 10px 5px #888888; /* Серая тень */
+            text-align: left; /* По левому краю */
+            animation: spin 8s linear infinite; /* Крутить вокруг оси */
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); } /* Все время */
+        }
+
+        .leaderboard h2 {
+            text-align: center;
+            margin-bottom: 0;
+            text-shadow: 3px 3px 5px #000; /* Сильная тень */
+            font-size: 4em;
+            color: #ffffff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse; /* Объединить границы */
+            border: 5px inset #ffffff; /* Выпуклая белая граница */
+            background-color: #800000; /* Кровавый фон */
+            color: #ffff00; /* Желтый текст */
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center; /* И в центр! */
+            border: 3px solid #000000; /* Черная граница */
+            font-size: 1.5em; /* Большой шрифт */
+        }
+
+        th {
+            background-color: #4682b4; /* Стальной */
+        }
+
+        @media (max-width: 768px) {
+            /* Ещё хуже на маленьких экранах */
+            .card {
+                width: 100%; /* Занять все пространство */
+                margin: 5px; /* Маленький отступ */
+            }
+
+            .leaderboard {
+                width: 100%; /* Все равно круг */
+                margin: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#">Главная</a>
+        <a href="#">Профиль</a>
+        <a href="#">Админ панель</a>
+        <a href="#">Выход</a>
+    </nav>
+
+    <div class="card">
+        <h2>HACK BANK</h2>
+        <p>3131 0314 1493 1567</p>
+        <button>Получить деньги</button>
+    </div>
+
+    <div class="leaderboard">
+        <h2>Лидерборд</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Место</th>
+                    <th>Имя</th>
+                    <th>Карта</th>
+                    <th>Баланс</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Data Sceinse Llama 3.3 70b fgdgdfgdfg</td>
+                    <td>3131031414931567</td>
+                    <td>24028 Р</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Data
+                        Sceinse</td>
+                        <td>1443184873142010</td>
+                        <td>20863 Р</td>
+                    <tr>
+                        <td>3</td>
+                        <td>Data Sceinse Llama 3.3 70b</td>
+                        <td>4018027815390660</td>
+                        <td>784 Р</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>RND</td>
+                        <td>2281493018383993</td>
+                        <td>618 Р</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Data Sceinse Llama 3.3 70b</td>
+                        <td>7579937745585863</td>
+                        <td>0 Р</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>ddfdfdf</td>
+                        <td>9456547070707162</td>
+                        <td>0 Р</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+    </body>
+    </html>

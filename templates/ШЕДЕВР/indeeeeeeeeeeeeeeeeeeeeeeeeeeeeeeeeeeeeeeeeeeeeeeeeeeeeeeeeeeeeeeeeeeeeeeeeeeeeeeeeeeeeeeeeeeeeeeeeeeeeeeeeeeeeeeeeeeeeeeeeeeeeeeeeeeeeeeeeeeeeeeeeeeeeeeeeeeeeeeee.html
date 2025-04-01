@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN PANEL</title>
+    <style>
+        body {
+            background-image: url(./314408944_19dfb5e9d4442ffcb5d67eae459f6c63_800.jpg);
+            background-color: #ff0000; /* Toxic red */
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: #00ff00; /* Eye-searing green */
+        }
+
+        nav {
+            background-color: #0000ff; /* Discordant blue */
+            border: 5px dashed #ffff00; /* Jagged yellow */
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 0.8em;
+            color: #ff00ff; /* Hot pink */
+        }
+
+        .dv {
+            border: 2px dotted #00ffff; /* Cyan dots */
+            padding: 5px;
+            background-color: #cccccc; /* Murky grey */
+            text-shadow: 2px 2px 4px #000000; /* Unreadable shadow */
+        }
+
+        .dv:hover {
+            background-color: #000000; /* Inverted hover */
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        main {
+           
+            background-color: #ffffff;
+            padding: 20px;
+            border: 4px ridge #800080; /* Purple border */
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #800000; /* Maroon */
+        }
+        .ph1{
+            width: 10%;
+            height: 100%;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #ffff00; /* Yellow header */
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background-color: #add8e6;
+            padding: 15px;
+            border: 3px groove #d2691e; 
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #008000;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        input[type="file"] {
+            background-color: #f0e68c; 
+            padding: 8px;
+            border: 1px solid #a0522d; 
+            margin-bottom: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #b0e0e6; /* Powder blue */
+            color: #a52a2a; /* Brown */
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+
+        button:hover {
+            background-color: #98fb98; /* Pale green */
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="dv1"><img class="ph1" src="./image.png" alt=""></div>
+        <div class="dv">ГЛАВНАЯ</div>
+        <div class="dv">НАЗВАНИЕ ПРОВЕРКА ДОСТУПА</div>
+        <div class="dv">ПРОФИЛЬ</div>
+        <div class="dv">ВЫХОД</div>
+    </nav>
+    <main>
+        <h1>АДМИН ПАНЕЛЬ</h1>
+        <form method="post" enctype="multipart/form-data">
+            <div>
+                <label for="file">ЗАГРУЗИТЕ КЛЮЧ ИЗОБРАЖЕНИЯ</label>
+                <input type="file" id="file" name="file" multiple />
+            </div>
+            <div>
+                <button>ПРОВЕРКА ДОСТУПА</button>
+            </div>
+        </form>
+    </main>
+
+</body>
+</html>
+
