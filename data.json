@@ -1,0 +1,19 @@
+{
+    "72878552971": {
+        "name": "\u0410\u043d\u0442\u043e\u043d",
+        "phone": "72878552971",
+        "password": "scrypt:32768:8:1$rW3XO7iesM6L6bK0$374bee24560eb2c62fa87ed93d3421db3aee9db11d2f3813e0b5bc105f924f58c181cce70f6705313077a0848f65aa34d36f978e17803f563ef0888aebe45bd0",
+        "money": 3288,
+        "card_number": "8760236415840755",
+        "country": ""
+    },
+    "72555555555": {
+        "name": "\u0411\u043e\u0431\u0440",
+        "phone": "72555555555",
+        "password": "scrypt:32768:8:1$0OsSpzmHRbK4OUca$45fb183075f8e9d561e8240f7d116bf332ea68f575eb56f282ed6acacc4e92ab43acabc83902ee35e8a3c64753cd332eedc4074a540db555001cb2c720674944",
+        "money": -54081,
+        "card_number": "2421029684137731",
+        "country": "",
+        "spins_count": 3
+    }
+}
