@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Админ панель{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4 text-light">Админ панель</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Проверка доступа</h5>
+            <form id="imageForm" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="imageInput" class="form-label">Загрузите ключ-изображение</label>
+                    <input type="file" class="form-control" id="imageInput" accept="image/*" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Проверить доступ</button>
+            </form>
+        </div>
+    </div>
+    <div id="adminContent" style="display: none;">
+        <div class="mt-4">
+            <div class="card bg-dark text-light">
+                <div class="card-body">
+                    <h3 class="card-title">Управление базой данных</h3>
+                    <div class="mb-3">
+                        <button class="btn btn-success me-2" onclick="downloadDatabase()">
+                            <i class="bi bi-download"></i> Скачать JSON
+                        </button>
+                        <button class="btn btn-warning me-2" onclick="document.getElementById('uploadJson').click()">
+                            <i class="bi bi-upload"></i> Загрузить JSON
+                        </button>
+                        <input type="file" id="uploadJson" accept=".json" style="display: none" onchange="uploadDatabase(this)">
+                    </div>
+                    <div class="mb-3">
+                        <h4>Текущие данные:</h4>
+                        <pre id="databaseContent" class="bg-light text-dark p-3 rounded" style="max-height: 500px; overflow-y: auto;">
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('imageForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData();
+    const imageFile = document.getElementById('imageInput').files[0];
+    formData.append('image', imageFile);
+
+    try {
+        const response = await fetch('/verify_admin_image', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            document.getElementById('adminContent').style.display = 'block';
+            document.getElementById('imageForm').style.display = 'none';
+            loadDatabaseContent(); // Загружаем содержимое базы данных
+        } else {
+            alert('Неверное изображение! Доступ запрещен.');
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Произошла ошибка при проверке изображения');
+    }
+});
+
+async function loadDatabaseContent() {
+    try {
+        const response = await fetch('/admin/get_database');
+        const data = await response.json();
+        document.getElementById('databaseContent').textContent = JSON.stringify(data, null, 2);
+    } catch (error) {
+        console.error('Ошибка загрузки данных:', error);
+        alert('Ошибка при загрузке данных');
+    }
+}
+
+function downloadDatabase() {
+    const content = document.getElementById('databaseContent').textContent;
+    const blob = new Blob([content], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'database.json';
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+}
+
+async function uploadDatabase(input) {
+    if (!input.files || !input.files[0]) return;
+
+    const file = input.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+        const response = await fetch('/admin/update_database', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await response.json();
+        if (result.success) {
+            alert('База данных успешно обновлена!');
+            loadDatabaseContent(); // Перезагружаем содержимое
+        } else {
+            alert('Ошибка при обновлении базы данных: ' + result.error);
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Произошла ошибка при загрузке файла');
+    }
+}
+</script>
+{% endblock %} 

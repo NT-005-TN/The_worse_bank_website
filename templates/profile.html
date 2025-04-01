@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">Профиль пользователя</h3>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">Имя</label>
+                    <p class="form-control-static">{{ current_user.name }}</p>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Телефон</label>
+                    <p class="form-control-static">{{ current_user.phone }}</p>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Страна</label>
+                    <p class="form-control-static">{{ current_user.country or 'Не указана' }}</p>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Номер карты</label>
+                    <p class="form-control-static card-number">{{ current_user.card_number }}</p>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Баланс</label>
+                    <p class="form-control-static money-amount">{{ current_user.money }} ₽</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

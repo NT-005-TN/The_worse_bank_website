@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+
+<style>
+.bank-card {
+    width: 100%;
+    max-width: 400px;
+    height: 250px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    border-radius: 20px;
+    padding: 30px;
+    color: rgb(10, 10, 10);
+    position: relative;
+    box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
+    text-align: left;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card-chip {
+    width: 45px;
+    height: 35px;
+    background: #ffd700;
+    border-radius: 6px;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.card-logo {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
+
+.card-number {
+    font-size: 32px;
+    letter-spacing: 2px;
+    margin: 20px 0 40px;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.card-holder {
+    margin-bottom: 15px;
+}
+
+.label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.name {
+    font-size: 20px;
+    font-weight: 400;
+    color: white;
+}
+
+.get-money-btn {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.get-money-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.card {
+    background-color: rgba(26, 26, 26, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    overflow: hidden;
+    color: white !important;
+}
+
+.card-header {
+    background: rgba(44, 44, 44, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: white !important;
+    padding: 10px 15px;
+}
+
+.card-header h4 {
+    color: white !important;
+}
+
+.card-body {
+    background-color: transparent;
+    padding: 15px;
+    color: white !important;
+}
+
+.table {
+    color: white !important;
+    margin-bottom: 0;
+}
+
+.table thead th {
+    border-bottom: 2px solid rgba(52, 152, 219, 0.5);
+    color: white !important;
+    padding: 10px;
+}
+
+.table td, .table th {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    background-color: transparent !important;
+    color: white !important;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(41, 128, 185, 0.2) !important;
+}
+
+.table-hover tbody tr:hover td {
+    color: white !important;
+}
+
+.money-amount {
+    color: #2ecc71;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+}
+</style>
+<div class="row">
+    <div class="col-md-6 mx-auto text-center mb-4">
+        <div class="bank-card">
+            <div class="card-chip"></div>
+            <div class="card-logo">HACK BANK</div>
+            <div class="card-number">
+                3131 0314 1493 1567
+            </div>
+            <div class="card-holder">
+                <div class="label">ВЛАДЕЛЕЦ КАРТЫ</div>
+            </div>
+            <button id="getMoneyBtn" class="get-money-btn">Получить деньги</button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">Лидерборд самых богатейших людей банка</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Место</th>
+                                <th>Имя</th>
+                                <th>Карта</th>
+                                <th>Баланс</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in leaderboard %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ user.name }}</td>
+                                <td class="card-number">{{ user.card_number }}</td>
+                                <td class="money-amount">{{ user.money }} ₽</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.getElementById('getMoneyBtn').addEventListener('click', function() {
+        fetch('/get_money', { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(() => {
+            location.reload();
+        });
+    });
+</script>
+{% endblock %} 

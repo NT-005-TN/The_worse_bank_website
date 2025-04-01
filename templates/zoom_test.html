@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Эффект отдаления</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Отключаем прокрутку */
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            font-family: Arial, sans-serif;
+            transition: transform 0.3s ease; /* Плавный переход */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>Привет! Это пример эффекта отдаления.</p>
+    </div>
+
+    <script>
+        // Функция для изменения масштаба
+        function setScale(scale) {
+            const container = document.querySelector('.container');
+            container.style.transform = `scale(${scale})`;
+        }
+
+        // Установка начального масштаба на 70%
+        setScale(0.7);
+
+        // Добавление динамического изменения масштаба с помощью колеса мыши
+        let currentScale = 0.7; // Начальный масштаб
+
+        window.addEventListener('wheel', (event) => {
+            if (event.ctrlKey) { // Только если нажата клавиша CTRL
+                event.preventDefault(); // Отключаем стандартное поведение браузера
+
+                const delta = event.deltaY > 0 ? -0.56 : 0.1; // Изменение масштаба
+                currentScale += delta;
+
+                // Ограничение минимального и максимального масштаба
+                currentScale = Math.max(0.1, Math.min(3, currentScale));
+
+                // Применяем новый масштаб
+                setScale(currentScale);
+            }
+        });
+    </script>
+</body>
+</html>

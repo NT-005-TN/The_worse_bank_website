@@ -1,0 +1,248 @@
+{% extends "base.html" %}
+
+{% block title %}
+Регистрация
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">Регистрация</h3>
+            </div>
+            <div class="registration-form">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <form method="POST" class="registration-form">
+                    <h2>РЕГИСТРАЦИЯ</h2>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Имя</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Телефон: <span id="phoneDisplay"></span></label>
+                        <div class="slider-container">
+                            <input type="range" class="form-range" id="phoneSlider" min="70000000000" max="79999999999" step="1">
+                            <input type="hidden" id="phone" name="phone">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="country" class="form-label">Страна</label>
+                        <div class="country-selector text-center">
+                            <input type="hidden" id="country" name="country" required>
+                            <div id="countryWheel" class="country-wheel">
+                                <div class="wheel-pointer"></div>
+                                <div class="wheel-container"></div>
+                            </div>
+                            <button type="button" class="btn btn-primary mt-2" id="spinButton">Крутить колесо</button>
+                            <p class="mt-2" id="selectedCountry">Выберите страну</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Пароль</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.country-wheel {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border-radius: 50%;
+    background: #2c3e50;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+.wheel-pointer {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 50px;
+    background: #e74c3c;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    z-index: 2;
+}
+
+.wheel-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-origin: center;
+    transition: transform 5s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+}
+
+.country-item {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    transform-origin: 100% 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    box-sizing: border-box;
+    border-left: 2px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.country-item:hover {
+    background-color: rgba(255,255,255,0.1) !important;
+}
+
+.spin-button-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#spinButton {
+    padding: 10px 30px;
+    font-size: 18px;
+    border-radius: 25px;
+    border-top: 25px;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,10);
+    transition: all 0.3s;
+}
+
+#spinButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+#spinButton:disabled {
+    background: #95a5a6;
+    transform: none;
+    box-shadow: none;
+}
+
+#selectedCountry {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(52, 152, 219, 0.1);
+}
+</style>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Телефонный слайдер
+    const phoneSlider = document.getElementById('phoneSlider');
+    const phoneDisplay = document.getElementById('phoneDisplay');
+    const phoneInput = document.getElementById('phone');
+
+    function formatPhoneNumber(number) {
+        const str = number.toString();
+        return `+${str.slice(0, 1)} (${str.slice(1, 4)}) ${str.slice(4, 7)}-${str.slice(7, 9)}-${str.slice(9)}`;
+    }
+
+    phoneSlider.addEventListener('input', function() {
+        const value = this.value;
+        phoneDisplay.textContent = formatPhoneNumber(value);
+        phoneInput.value = value;
+    });
+
+    // Set initial value
+    phoneSlider.value = 70000000000;
+    phoneDisplay.textContent = formatPhoneNumber(phoneSlider.value);
+    phoneInput.value = phoneSlider.value;
+
+    // Улучшенное колесо выбора страны
+    const countries = [
+        'Россия', 'США', 'Китай', 'Япония', 'Германия', 
+        'Франция', 'Великобритания', 'Италия', 'Испания', 'Канада'
+    ];
+    
+    const wheel = document.getElementById('countryWheel');
+    const container = wheel.querySelector('.wheel-container');
+    const spinButton = document.getElementById('spinButton');
+    const selectedCountryText = document.getElementById('selectedCountry');
+    const countryInput = document.getElementById('country');
+    let canSpin = true;
+    let currentRotation = 0;
+
+    // Создаем сегменты колеса
+    countries.forEach((country, index) => {
+        const segment = document.createElement('div');
+        segment.className = 'country-item';
+        segment.textContent = country;
+        
+        // Вычисляем угол для каждого сегмента
+        const angle = (360 / countries.length) * index;
+        segment.style.transform = `rotate(${angle}deg)`;
+        
+        // Создаем градиент для каждого сегмента
+        const hue = (360 / countries.length) * index;
+        segment.style.backgroundColor = `hsl(${hue}, 70%, 45%)`;
+        
+        container.appendChild(segment);
+    });
+
+    // Функция вращения колеса
+    function spinWheel() {
+        if (!canSpin) return;
+        canSpin = false;
+        spinButton.disabled = true;
+
+        // Генерируем случайное количество оборотов (от 5 до 10) и дополнительный угол
+        const spins = 5 + Math.random() * 5;
+        const extraDegrees = Math.random() * 360;
+        const totalRotation = currentRotation + (360 * spins) + extraDegrees;
+        currentRotation = totalRotation;
+
+        // Применяем вращение
+        container.style.transform = `rotate(${totalRotation}deg)`;
+
+        // После остановки определяем выбранную страну
+        setTimeout(() => {
+            const normalizedRotation = totalRotation % 360;
+            const selectedIndex = Math.floor((360 - normalizedRotation) / (360 / countries.length)) % countries.length;
+            const selectedCountry = countries[selectedIndex];
+            
+            selectedCountryText.textContent = `Выбрана страна: ${selectedCountry}`;
+            selectedCountryText.style.backgroundColor = `hsla(${(360 / countries.length) * selectedIndex}, 70%, 45%, 0.1)`;
+            countryInput.value = selectedCountry;
+
+            canSpin = true;
+            spinButton.disabled = false;
+        }, 5000);
+    }
+
+    spinButton.addEventListener('click', spinWheel);
+</script>
+{% endblock %} 

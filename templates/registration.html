@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <style>
+        /* Сброс стилей, чтобы еще больше нагадить */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border: none; /* Убрать все границы */
+            outline: none; /* Убрать все выделения */
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            background-color: #f0e68c; /* Khaki - зачем нормально, если можно хуже */
+            color: #800080; /* Фиолетовый на хаки - ммм, красота */
+            text-align: center; /* Все по центру, чтобы было скучно */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: space-around; /* Случайное расположение */
+            align-items: stretch; /* Растянуть все */
+            background-image: url('https://i.imgur.com/MHmN6p0.gif');
+            background-size: 100px;
+            background-repeat: repeat;
+        }
+
+        nav {
+            background-color: #fa8072; /* Salmon - лососевый! */
+            padding: 15px;
+            border-bottom: 8px dotted #000000;
+            font-size: 1.5em;
+            text-shadow: 2px 2px 2px #ff0000;
+            display: flex;
+            justify-content: space-between; /* Растянуть лого и ссылки */
+        }
+
+        nav .logo {
+            font-weight: bold;
+            color: #a52a2a; /* Brown */
+            text-shadow: none;
+            font-size: 2em;
+        }
+
+        nav .auth-links a {
+            color: #4682b4; /* Steel Blue */
+            text-decoration: underline overline wavy #ff00ff; /* Все и сразу */
+            border: 3px dashed #00ff00;
+            padding: 5px 10px;
+            margin: 0 5px;
+            background-color: #ee82ee; /* Violet - зачем выбирать один */
+            border-radius: 50%; /* Все круглое! */
+        }
+
+        .registration-form {
+            background-color: #7fffd4; /* Aquamarine */
+            padding: 20px;
+            border: 6px ridge #d2691e;
+            width: 50%;
+            margin: 20px auto; /* Чтобы точно не сливалось */
+            box-shadow: 10px 10px 5px #888888;
+            transform: rotate(-5deg); /* Просто так */
+        }
+
+        .registration-form h2 {
+            font-size: 4em;
+            margin-bottom: 30px;
+            color: #0000cd; /* Medium Blue */
+            text-shadow: 5px 5px 10px #ff0000;
+            text-transform: uppercase;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.8em;
+            font-style: oblique;
+            color: #d8bfd8; /* Thistle */
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 4px double #000000;
+            border-radius: 10px;
+            box-sizing: border-box;
+            background-color: #87ceeb; /* Skyblue */
+            color: #8b4513; /* SaddleBrown */
+            font-size: 1.4em;
+        }
+
+        .wheel-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 0; /* Квадрат */
+            background-color: #f4a460; /* SandyBrown */
+            margin: 15px auto;
+            border: 5px solid #a9a9a9; /* DarkGray */
+            box-shadow: inset 5px 5px 10px #000;
+            transform: skew(20deg); /* Исковеркать */
+        }
+
+        button {
+            background-color: #dc143c; /* Crimson */
+            color: #ffff00; /* Yellow */
+            padding: 15px 25px;
+            margin: 10px 0;
+            border: 6px dotted #ffff00;
+            border-radius: 0;
+            cursor: progress; /* Загрузка? */
+            text-transform: lowercase; /* Испортить капс */
+            font-weight: bold;
+            box-shadow: -5px -5px 5px #000;
+        }
+
+        button:hover {
+            background-color: #000000;
+            color: #ffffff;
+            transform: scale(1.2); /* Еще больше испортить */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Банк ФПЕ</div>
+        <div class="auth-links">
+            <a href="#">Вход</a>
+            <a href="#">Регистрация</a>
+        </div>
+    </nav>
+
+    <div class="registration-form">
+        <h2>Регистрация</h2>
+        <form>
+            <label for="name">Имя</label>
+            <input type="text" id="name" name="name">
+            <div class="container">
+                <p>Выберите свой номер телефона</p>
+                <p>Переместите ползунок, чтобы выбрать номер:</p>
+                <input type="range" id="phone-slider" min="70000000000" max="79999999999" step="1" value="70000000000">
+<!--                <div id="phone-number">70000000000</div>-->
+                <div id="phone-number">+7(000)0000000</div>
+            </div>
+            <label>Страна</label>
+            <div class="wheel-container">
+                <!--  Сюда нужно добавить SVG для крутящегося колеса -->
+            </div>
+
+            <button>Крутить колесо</button>
+            <button>Выберите страну</button>
+
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password">
+
+            <button>Зарегистрироваться</button>
+        </form>
+    </div>
+
+</body>
+<script>
+        // Функция для форматирования номера телефона
+        function formatPhoneNumber(number) {
+            const str = number.toString();
+            const prefix = "+7";
+            const code = str.slice(1, 4); // Код из 3 цифр
+            const mainPart = str.slice(4); // Остальная часть номера
+            return `${prefix}(${code})${mainPart}`;
+        }
+
+        // Получаем элементы
+        const slider = document.getElementById('phone-slider');
+        const phoneNumberDisplay = document.getElementById('phone-number');
+
+        // Обновляем отображение номера при перемещении ползунка
+        slider.addEventListener('input', () => {
+            const selectedNumber = slider.value;
+            phoneNumberDisplay.textContent = formatPhoneNumber(selectedNumber);
+        });
+
+        // Инициализация начального значения
+        phoneNumberDisplay.textContent = formatPhoneNumber(slider.value);
+    </script>
+</html>

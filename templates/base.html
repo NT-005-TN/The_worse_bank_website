@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Банк ФПЕ - {% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+                /* Сброс стилей, чтобы еще больше нагадить */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border: none; /* Убрать все границы */
+            outline: none; /* Убрать все выделения */
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive;
+            background-color: #f0e68c; /* Khaki - зачем нормально, если можно хуже */
+            color: #800080; /* Фиолетовый на хаки - ммм, красота */
+            text-align: center; /* Все по центру, чтобы было скучно */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: space-around; /* Случайное расположение */
+            align-items: stretch; /* Растянуть все */
+            background-image: url('https://i.imgur.com/MHmN6p0.gif');
+            background-size: 100px;
+            background-repeat: repeat;
+        }
+
+        nav {
+            background-color: #fa8072; /* Salmon - лососевый! */
+            padding: 15px;
+            border-bottom: 8px dotted #000000;
+            font-size: 1.5em;
+            text-shadow: 2px 2px 2px #ff0000;
+            display: flex;
+            justify-content: space-between; /* Растянуть лого и ссылки */
+        }
+
+        nav .logo {
+            font-weight: bold;
+            color: #a52a2a; /* Brown */
+            text-shadow: none;
+            font-size: 2em;
+        }
+
+        nav .auth-links a {
+            color: #4682b4; /* Steel Blue */
+            text-decoration: underline overline wavy #ff00ff; /* Все и сразу */
+            border: 3px dashed #00ff00;
+            padding: 5px 10px;
+            margin: 0 5px;
+            background-color: #ee82ee; /* Violet - зачем выбирать один */
+            border-radius: 50%; /* Все круглое! */
+        }
+
+        .registration-form {
+            background-color: #7fffd4; /* Aquamarine */
+            padding: 20px;
+            border: 6px ridge #d2691e;
+            width: 50%;
+            margin: 20px auto; /* Чтобы точно не сливалось */
+            box-shadow: 10px 10px 5px #888888;
+            transform: rotate(-5deg); /* Просто так */
+        }
+
+        .registration-form h2 {
+            font-size: 4em;
+            margin-bottom: 30px;
+            color: #0000cd; /* Medium Blue */
+            text-shadow: 5px 5px 10px #ff0000;
+            text-transform: uppercase;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.8em;
+            font-style: oblique;
+            color: #d8bfd8; /* Thistle */
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 4px double #000000;
+            border-radius: 10px;
+            box-sizing: border-box;
+            background-color: #87ceeb; /* Skyblue */
+            color: #8b4513; /* SaddleBrown */
+            font-size: 1.4em;
+        }
+
+        .wheel-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 0; /* Квадрат */
+            background-color: #f4a460; /* SandyBrown */
+            margin: 15px auto;
+            border: 5px solid #a9a9a9; /* DarkGray */
+            box-shadow: inset 5px 5px 10px #000;
+            transform: skew(20deg); /* Исковеркать */
+        }
+
+        button {
+            background-color: #dc143c; /* Crimson */
+            color: #ffff00; /* Yellow */
+            padding: 15px 25px;
+            margin: 10px 0;
+            border: 6px dotted #ffff00;
+            border-radius: 0;
+            cursor: progress; /* Загрузка? */
+            text-transform: lowercase; /* Испортить капс */
+            font-weight: bold;
+            box-shadow: -5px -5px 5px #000;
+        }
+
+        button:hover {
+            background-color: #000000;
+            color: #ffffff;
+            transform: scale(1.2); /* Еще больше испортить */
+        }
+
+
+        .navbar-brand img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .card-number {
+            font-family: monospace;
+            font-size: 1.2em;
+            letter-spacing: 2px;
+        }
+        .money-amount {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .slider-container {
+            width: 100%;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Банк ФПЕ</div>
+        <div class="auth-links">
+            <a href="#">Вход</a>
+            <a href="#">Регистрация</a>
+        </div>
+    </nav>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='image.png') }}" alt="Банк ФПЕ">
+                Банк ФПЕ
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse registration-form" style="background-color:#ffffff" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('casino') }}">Казино</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('profile') }}">Профиль</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin_panel') }}" id="adminBtn">Админ панель</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('logout') }}">Выход</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}">Вход</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('register') }}">Регистрация</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-info">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html> 
