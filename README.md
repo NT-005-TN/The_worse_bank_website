@@ -61,4 +61,49 @@
 ![Screenshot_20250402-091802_One Read](https://github.com/user-attachments/assets/6421530a-988e-421a-ad51-0fbaca522d08)
 
 Но ведь лудомания это плохо, верно?
+Наша котобригада выкидывает вас на главную после 10 круток, ведь нельзя так спускать удачу
+![IMG_20250402_091143_398](https://github.com/user-attachments/assets/46e47260-01c7-4a08-82a0-17981be3eec8)
+
+Пока создавалось казино, наши дизайнеры-разработчики сделалы прорыв и получило незабываемый UI.
+Лупа вам в помощь =)
+![IMG_20250402_091128_780](https://github.com/user-attachments/assets/795d315b-b116-4e6b-91ad-502268ce965f)
+![IMG_20250402_091129_833](https://github.com/user-attachments/assets/c02212fc-4ff7-4ab6-9425-714af6aef666)
+![Screenshot_20250402-091238_One Read](https://github.com/user-attachments/assets/4c673b1e-d8c6-4efa-8b58-adc5d4c58dad)
+
+И конечно же наши счета - основа банка и нравственности проекта.
+![Screenshot_20250402-091334_One Read](https://github.com/user-attachments/assets/07e03844-f48b-40ec-8e04-56f396067565)
+![IMG_20250402_091132_046](https://github.com/user-attachments/assets/82b97a7b-ddf5-48a0-a81f-c847de67f783)
+
+И мы не шутим
+![Screenshot_20250402-091341_One Read](https://github.com/user-attachments/assets/1785a57b-4311-461e-9975-cad12b510a72)
+
+
+Не забываем про священный кокос в админ панели
+![Screenshot_20250402-091309_One Read](https://github.com/user-attachments/assets/2d23709e-de19-472c-9f46-2f8eac15e7f3)
+
+Вот и всё. Мы сделали всё, что успели. Наша команда работала без остановки. Сменялись разрабы и дизайнеры на нашей вахте разработки. И только наш кэп был с 9:00 до 25:00 по мск(а ведь он из ДВ, моё уважение нашему капитану - Спасибо, бро!)
+
+Чтож
+Осталась наша великая презентация проекта, вот они - наши шедевральные слайды, которые оправдывают наш код
+![Screenshot_20250402-100956_One Read](https://github.com/user-attachments/assets/c8359e37-a6f8-4271-8af9-f878c049e804)
+![Screenshot_20250402-100951_One Read](https://github.com/user-attachments/assets/dd75667f-ad3d-4cd8-9f85-d760bc4d6f94)
+![Screenshot_20250402-100926_One Read](https://github.com/user-attachments/assets/3afdc655-5912-43b1-aea7-88778fc66a63)
+![Screenshot_20250402-100917_One Read](https://github.com/user-attachments/assets/4e2f14aa-7d93-475c-ab5e-cf07654f1987)
+![Screenshot_20250402-100910_One Read](https://github.com/user-attachments/assets/9de2cafc-39e1-4e26-add4-49540c691644)
+![Screenshot_20250402-100906_One Read](https://github.com/user-attachments/assets/c579ac77-dca0-456e-95aa-4f66a2644c12)
+![Screenshot_20250402-100901_One Read](https://github.com/user-attachments/assets/d894d6c1-d826-454b-9f07-fbecccf68f17)
+![Screenshot_20250402-100832_One Read](https://github.com/user-attachments/assets/79265cd6-fd5e-4b0f-99a0-4443bd8f1b6c)
+
+Вот и подошёл хакатон к концу
+Несмотря на то, что наш проект имел свои недостатки, мы не смогли занять какую-либо номинацию
+Но сам хакатон стал клевой площадкой для знакомств, где мы нашли единомышленников
+Нам удалось хорошо пообщаться с командой Безумцев, которые оценили идею с кокосом и казино
+Весело был как во время разработки,  ак и на защите продуктов
+Мы получиои бесценный опыт того, как не нужно писать код, делать UI и реализовывать безопасность продукта
+
+Думаю, лучшим завершением всего будет это:
+![Screenshot_20250402-091433_One Read](https://github.com/user-attachments/assets/260050cb-d1c2-4a9e-ac5b-c22b54b64653)
+
+
+
 
